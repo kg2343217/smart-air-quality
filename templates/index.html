@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Air Quality Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Smart Air Quality Monitor</h2>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Check AQI</button>
+        </form>
+
+        {% if aqi is not none %}
+            <div class="result">
+                <p><strong>City:</strong> {{ city }}</p>
+                <p><strong>AQI:</strong> {{ aqi }}</p>
+                <p><strong>Category:</strong> {{ category }}</p>
+                <p><strong>Alert:</strong> {{ alert }}</p>
+            </div>
+        {% elif error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
